@@ -1,0 +1,49 @@
+<div *ngIf="!testCompleted">
+  <div class="test-container" *ngIf="Questions[questionNumber]">
+    <div class="question-info">
+      <h2>Question {{ questionNumber + 1 }}</h2>
+      <p>{{ Questions[questionNumber].questionText }}</p>
+    </div>
+
+    <form class="answers-form">
+      <div *ngFor="let answer of answers" class="answer-option">
+        <label>
+          <input
+            type="radio"
+            name="answer"
+            [value]="answer.id"
+            (change)="onAnswerSelected(answer.id)"
+          />
+          {{ answer.answerText }}
+        </label>
+      </div>
+    </form>
+
+    <div class="navigation-buttons">
+      <button *ngIf="questionNumber + 1 > 1" (click)="previousQuestion()">
+        Back
+      </button>
+      <button
+        *ngIf="Questions.length > questionNumber + 1"
+        (click)="nextQuestion()"
+      >
+        Next
+      </button>
+      <button
+        *ngIf="Questions.length === questionNumber + 1"
+        (click)="completeTest()"
+      >
+        Complete
+      </button>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress" [style.width]="getProgressWidth()">
+        {{ questionNumber + 1 }} / {{ Questions.length }}
+      </div>
+    </div>
+  </div>
+</div>
+<ng-container *ngIf="testCompleted">
+  <app-test-result [passed]="testPassed"></app-test-result>
+</ng-container>

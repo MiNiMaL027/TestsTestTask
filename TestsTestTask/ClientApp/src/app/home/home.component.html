@@ -1,0 +1,36 @@
+<H5 *ngIf="tests && tests.length > 0">Available tests:</H5>
+<div *ngIf="tests && tests.length > 0">
+  <div
+    *ngFor="let test of tests"
+    class="test-container"
+    (click)="goToTest(test.id)"
+  >
+    <p
+      class="test-name"
+      [ngStyle]="{ color: test.isPassed ? 'gray' : 'black' }"
+    >
+      {{ test.name }}
+    </p>
+  </div>
+  <div *ngIf="!tests || tests.length === 0">
+    <p>No tests available.</p>
+  </div>
+</div>
+<H5 *ngIf="unavailableTests && unavailableTests.length > 0">Passed tests:</H5>
+<div *ngIf="unavailableTests && unavailableTests.length > 0">
+  <div
+    *ngFor="let test of unavailableTests"
+    class="test-container"
+    (click)="goToTest(test.id)"
+  >
+    <p
+      class="test-name"
+      [ngStyle]="{ color: test.isPassed ? 'gray' : 'black' }"
+    >
+      {{ test.name }}
+    </p>
+  </div>
+  <div *ngIf="!unavailableTests || unavailableTests.length === 0">
+    <p>No tests available.</p>
+  </div>
+</div>

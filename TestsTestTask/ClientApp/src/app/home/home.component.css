@@ -1,0 +1,12 @@
+/* Стилі для прямокутника тесту */
+.test-container {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+/* Стилі для назви тесту */
+.test-name {
+  font-weight: bold;
+}
